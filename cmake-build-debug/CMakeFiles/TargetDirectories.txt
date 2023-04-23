@@ -1,0 +1,3 @@
+/Users/dukatnandor/Library/Mobile Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2. félév/Programozás 2./Nagy Házi/Project/cmake-build-debug/CMakeFiles/Project.dir
+/Users/dukatnandor/Library/Mobile Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2. félév/Programozás 2./Nagy Házi/Project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/dukatnandor/Library/Mobile Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2. félév/Programozás 2./Nagy Házi/Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir

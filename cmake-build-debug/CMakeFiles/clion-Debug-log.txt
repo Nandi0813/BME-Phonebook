@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S "/Users/dukatnandor/Library/Mobile Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2. félév/Programozás 2./Nagy Házi/Project" -B "/Users/dukatnandor/Library/Mobile Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2. félév/Programozás 2./Nagy Házi/Project/cmake-build-debug"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/dukatnandor/Library/Mobile Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2. félév/Programozás 2./Nagy Házi/Project/cmake-build-debug

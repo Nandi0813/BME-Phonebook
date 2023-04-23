@@ -1,0 +1,13 @@
+# ninja log v5
+8	235	1682281545201184501	CMakeFiles/Project.dir/Managers/String.cpp.o	37c0ecad79f48f65
+1	65	1682283539614520727	build.ninja	6f4fea092c980dc7
+16	539	1682274279528533730	CMakeFiles/Project.dir/Managers/string5.cpp.o	e919919c4d661ba1
+8	605	1682283200831581475	CMakeFiles/Project.dir/main.cpp.o	2c6d762fe70e8412
+14	251	1682273607011060530	CMakeFiles/Project.dir/Managers/Contact/contact.cpp.o	c99bf261db794e06
+22	634	1682280373847521489	CMakeFiles/Project.dir/Managers/contact.cpp.o	644ca626d00d696
+14	311	1682273607072431074	CMakeFiles/Project.dir/Libs/memtrace.cpp.o	83700bbec7dd07f5
+0	305	1682271765780417302	CMakeFiles/Project.dir/libs/memtrace.cpp.o	5e3bdea464fdc53
+524	572	1682283314093276008	Project	43500038f68f0d13
+14	515	1682273607276884011	CMakeFiles/Project.dir/Managers/String/string5.cpp.o	5369f9b54c86bed0
+22	633	1682280373846694111	CMakeFiles/Project.dir/Managers/string.cpp.o	38c74aea9acfc2ff
+11	524	1682283314041955896	CMakeFiles/Project.dir/Managers/directory.cpp.o	26e6fe812f5bbe86
