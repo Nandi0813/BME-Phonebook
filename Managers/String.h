@@ -2,6 +2,9 @@
 // Created by Dukát Nándor on 2023. 04. 23..
 //
 
+#ifndef STRING_H
+#define STRING_H
+
 #include <iostream>
 
 class String
@@ -31,8 +34,12 @@ public:
     char& operator[](size_t idx);
     const char& operator[](size_t idx) const;
 
+    bool contains(char &c) const;
+
     ~String();
 };
 
 std::ostream& operator<<(std::ostream& os, String const& rhs);
 std::istream& operator>>(std::istream& is, String& s0);
+
+#endif

@@ -6,44 +6,29 @@
 #include <iostream>
 
 #include "String.h"
+#include "name.h"
+#include "address.h"
+#include "phone.h"
 
 using std::endl;
 
 class Contact
 {
 private:
-    String last_name;
-    String first_name;
-    String nickname;
-    String address;
-    String work_number;
-    String private_number;
+    Name name;
+    Address address;
+    Phone phone;
 public:
-    Contact() = default;
+    Contact(const Name &name, const Address &address, const Phone &phone)
+            : name(name), address(address), phone(phone) {}
 
-    Contact(const String& last_name, const String& first_name, const String& nickname, const String& address, const String& work_number, const String& private_number);
+    Name getName() const { return name; }
 
-    String getLastname() const { return last_name; }
-    void setLastname(const String &s) { this->last_name = s; }
+    Address getAddress() const { return address; }
 
-    String getFirstname() const { return first_name; }
-    void setFirstname(const String &s) { this->first_name = s; }
+    Phone getPhone() const { return phone; }
 
-    String getFullname() const { return first_name + " " + last_name; }
-
-    String getNickname() const { return nickname; }
-    void setNickname(const String &s) { this->nickname = s; }
-
-    String getAddress() const { return address; }
-    void setAddress(const String &s) { this->address = s; }
-
-    String getWorkNumber() const { return work_number; }
-    void setWorkNumber(const String &s) { this->work_number = s; }
-
-    String getPrivateNumber() const { return private_number; }
-    void setPrivateNumber(const String &s) { this->private_number = s; }
-
-    void print(std::ostream& os);
+    void print(std::ostream& os, bool lastLine);
 
     bool operator==(const Contact&) const;
 

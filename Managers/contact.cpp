@@ -3,34 +3,20 @@
 //
 #include "contact.h"
 
-Contact::Contact(const String &last_name, const String &first_name, const String &nickname, const String &address, const String &work_number, const String &private_number)
-{
-    this->last_name = last_name;
-    this->first_name = first_name;
-    this->nickname = nickname;
-    this->address = address;
-    this->work_number = work_number;
-    this->private_number = private_number;
-}
-
-
-void Contact::print(std::ostream &os)
+void Contact::print(std::ostream& os, bool lastLine)
 {
     os
             << "============================================" << endl
-            << "Keresztnév: " << first_name << ", " << "Vezetéknév: " << last_name << endl
+            << "Keresztnév: " << name.getFirstname() << ", " << "Vezetéknév: " << name.getLastname() << ", Becenév: " << name.getNickname() << endl
             // << "Teljes név: " << getFullname() << endl
-            << "Becenév: " << nickname << endl
             << "Cím: " << address << endl
-            << "Munkahelyi szám: " << work_number << endl
-            << "Privát szám: " << private_number << endl
-            << "============================================"
-            << endl;
+            << "Munkahelyi szám: " << phone.getWorkNumber() << endl
+            << "Privát szám: " << phone.getPrivateNumber() << endl;
+    if (lastLine)
+        os << "============================================" << endl;
 }
 
 bool Contact::operator==(const Contact &c) const
 {
-    if (work_number != c.work_number) return false;
-    if (private_number != c.private_number) return false;
-    return true;
+    return phone == c.getPhone();
 }

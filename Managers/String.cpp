@@ -120,6 +120,12 @@ const char& String::operator[](size_t idx) const
     return data[idx];
 }
 
+bool String::contains(char &c) const
+{
+    for (size_t i = 0; i < length; i++)
+        if (data[i] == c) return true;
+    return false;
+}
 
 String::~String()
 {
