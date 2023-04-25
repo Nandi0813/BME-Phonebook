@@ -74,13 +74,6 @@ build CMakeFiles/Project.dir/Managers/directory.cpp.o: CXX_COMPILER__Project_Deb
   OBJECT_DIR = CMakeFiles/Project.dir
   OBJECT_FILE_DIR = CMakeFiles/Project.dir/Managers
 
-build CMakeFiles/Project.dir/Managers/contact.cpp.o: CXX_COMPILER__Project_Debug /Users/dukatnandor/Library/Mobile$ Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2.$ félév/Programozás$ 2./Nagy$ Házi/Project/Managers/contact.cpp || cmake_object_order_depends_target_Project
-  DEFINES = -DMEMTRACE
-  DEP_FILE = CMakeFiles/Project.dir/Managers/contact.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++11
-  OBJECT_DIR = CMakeFiles/Project.dir
-  OBJECT_FILE_DIR = CMakeFiles/Project.dir/Managers
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Project
@@ -89,7 +82,7 @@ build CMakeFiles/Project.dir/Managers/contact.cpp.o: CXX_COMPILER__Project_Debug
 #############################################
 # Link the executable Project
 
-build Project: CXX_EXECUTABLE_LINKER__Project_Debug CMakeFiles/Project.dir/main.cpp.o CMakeFiles/Project.dir/Libs/memtrace.cpp.o CMakeFiles/Project.dir/Managers/String.cpp.o CMakeFiles/Project.dir/Managers/directory.cpp.o CMakeFiles/Project.dir/Managers/contact.cpp.o
+build Project: CXX_EXECUTABLE_LINKER__Project_Debug CMakeFiles/Project.dir/main.cpp.o CMakeFiles/Project.dir/Libs/memtrace.cpp.o CMakeFiles/Project.dir/Managers/String.cpp.o CMakeFiles/Project.dir/Managers/directory.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
   OBJECT_DIR = CMakeFiles/Project.dir
   POST_BUILD = :

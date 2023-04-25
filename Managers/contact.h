@@ -10,7 +10,7 @@
 #include "address.h"
 #include "phone.h"
 
-using std::endl;
+enum ContactType { null, company, person };
 
 class Contact
 {
@@ -18,19 +18,47 @@ private:
     Name name;
     Address address;
     Phone phone;
+protected:
+    ContactType contactType;
 public:
     Contact(const Name &name, const Address &address, const Phone &phone)
-            : name(name), address(address), phone(phone) {}
+    : name(name), address(address), phone(phone), contactType() {}
 
     Name getName() const { return name; }
-
     Address getAddress() const { return address; }
-
     Phone getPhone() const { return phone; }
 
-    void print(std::ostream& os, bool lastLine);
+    virtual void print(std::ostream& os) const = 0;
 
-    bool operator==(const Contact&) const;
+    bool operator==(const Contact& c) const {
+        return phone == c.getPhone();
+    }
 
-    ~Contact() = default;
+    virtual ~Contact() = default;
+};
+
+class Person : public Contact
+{
+public:
+    Person(const Name &name, const Address &address, const Phone &phone)
+    : Contact(name, address, phone) {
+        this->contactType = person;
+    }
+
+    void print(std::ostream& os) const override {
+        os << "Személy Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << std::endl;
+    }
+};
+
+class Company : public Contact
+{
+public:
+    Company(const Name &name, const Address &address, const Phone &phone)
+            : Contact(name, address, phone) {
+        this->contactType = company;
+    }
+
+    void print(std::ostream& os) const override {
+        os << "Cég Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << std::endl;
+    }
 };

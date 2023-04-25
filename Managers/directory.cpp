@@ -10,11 +10,28 @@ using std::endl;
 
 void Directory::addContact()
 {
+    ContactType contactType = null;
+    while (contactType == 0) {
+        String s;
+        cout << endl << "Add meg, hogy milyen típusú kontaktot szeretnél felvinni a rendszerbe." << endl << "Személy : sz - Cég: c ";
+        cin >> s;
+
+        if (s != "sz" && s != "c")
+            cout << endl << "Használd a 'sz' vagy 'c' betűk egyikét." << endl;
+        else
+        {
+            if (s == "sz")
+                contactType = person;
+            else
+                contactType = company;
+        }
+    }
+
     String last_name;
     while (last_name.getLength() == 0)
     {
         String s;
-        cout << endl << "Add meg a vezeték nevet: ";
+        cout << "Add meg a vezeték nevet: ";
         cin >> s;
 
         if (s.getLength() < 2)
@@ -84,22 +101,22 @@ void Directory::addContact()
             street = s;
     }
 
-    String number;
-    while (number.getLength() == 0)
+    String housenumber;
+    while (housenumber.getLength() == 0)
     {
         String s;
         cout << "Add meg a ház számot: ";
         cin >> s;
 
         if (s.getLength() > 0)
-            number = s;
+            housenumber = s;
     }
 
-    String worknumber;
-    while (worknumber.getLength() == 0)
+    String phonenumber;
+    while (phonenumber.getLength() == 0)
     {
         String s;
-        cout << "Add meg a munkahelyi telefonszámot: ";
+        cout << "Add meg a telefonszámot: ";
         cin >> s;
 
         if (s.getLength() != 11)
@@ -107,27 +124,31 @@ void Directory::addContact()
         else if (s[0] != '0' || s[1] != '6')
             cout << endl << "A telefonszám a következő formátumot kell, hogy kövesse: 06301234567 (06-al kell kezdődnie)" << endl;
         else
-            worknumber = s;
+            phonenumber = s;
     }
 
-    String privatenumber;
-    while (privatenumber.getLength() == 0)
+    addContact(contactType, Name(last_name, first_name, nickname), Address(postcode, city, street, housenumber), Phone(phonenumber));
+}
+
+void Directory::addContact(ContactType contactType, const Name& name, const Address& address, const Phone& phone)
+{
+    try
     {
-        String s;
-        cout << "Add meg a privát telefonszámot: ";
-        cin >> s;
+        auto **tempDirectory = new Contact*[size + 1];
+        for (int i = 0; i < size; i++)
+            tempDirectory[i] = contacts[i];
+        delete[] contacts;
+        contacts = tempDirectory;
 
-        if (s.getLength() != 11)
-            cout << endl << "Az telefonszámnak pontosan 11 karakterből kell álni." << endl;
-        else if (s[0] != '0' || s[1] != '6')
-            cout << endl << "A telefonszám a következő formátumot kell, hogy kövesse: 06301234567 (06-al kell kezdődnie)" << endl;
+        if (contactType == company)
+            contacts[size++] = new Company(name, address, phone);
         else
-            privatenumber = s;
-    }
+            contacts[size++] = new Person(name, address, phone);
 
-    Contact contact(Name(last_name, first_name, nickname), Address(postcode, city, street, number), Phone(worknumber, privatenumber));
-    addContact(contact);
-    cout << endl << "Sikeresen hozzáadtál egy új névjegyet!";
+        cout << endl << "Sikeresen hozzáadtál egy új névjegyet!";
+    } catch(std::bad_alloc&) {
+        std::cout << "Hiba történt a kontakt hozzáadása közben!";
+    }
 }
 
 void Directory::listContacts()
@@ -139,24 +160,7 @@ void Directory::listContacts()
     }
 
     for (int i = 0; i < size; i++)
-        contacts[i]->print(cout, false);
-}
-
-
-void Directory::addContact(Contact &contact)
-{
-    try {
-        auto **tempDirectory = new Contact*[size + 1];
-
-        for (int i = 0; i < size; i++)
-            tempDirectory[i] = contacts[i];
-        delete[] contacts;
-
-        contacts = tempDirectory;
-        contacts[size++] = new Contact(contact);
-    } catch(std::bad_alloc&) {
-        std::cout << "Hiba történt a telefonkönyv memória foglalása közben!";
-    }
+        contacts[i]->print(cout);
 }
 
 bool Directory::deleteContact(Contact *contact)
@@ -188,28 +192,19 @@ Directory::~Directory()
     delete[] contacts;
 }
 
-Contact *Directory::searchByNumber(const String &s, Directory::numberType numberType) const
+Contact *Directory::searchByNumber(const String &s) const
 {
     for (int i = 0; i < size; i++)
-    {
-        switch (numberType) {
-            case work:
-                if (contacts[i]->getPhone().getWorkNumber() == s) return contacts[i];
-                continue;
-            case priv:
-                if (contacts[i]->getPhone().getPrivateNumber() == s) return contacts[i];
-                continue;
-        }
-    }
+        if (contacts[i]->getPhone() == s)
+            return contacts[i];
     return nullptr;
 }
 
 void Directory::importData(String &fileName)
 {
     std::ifstream file(fileName.getData());
-    if (!file)
+    if (!file || !file.is_open())
         throw "Nem sikerült beolvasni a telefonkönyv fájlt.";
-    if (!file.is_open()) return;
 
     int size = 0;
     file >> size;

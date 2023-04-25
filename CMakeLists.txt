@@ -13,4 +13,9 @@ add_executable(Project
         Managers/String.cpp
         Managers/String.h
         Managers/contact.h
-        Managers/directory.cpp Managers/directory.h Managers/contact.cpp Managers/name.h Managers/address.h Managers/phone.h)
+        Managers/directory.cpp
+        Managers/directory.h
+        Managers/name.h
+        Managers/address.h
+        Managers/phone.h
+        )

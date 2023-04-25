@@ -34,6 +34,8 @@ int main()
             case 'l':
                 directory.listContacts();
                 break;
+            default:
+                break;
         }
     }
     /*

@@ -7,27 +7,21 @@
 
 #include "String.h"
 
-class Phone {
+class Phone
+{
 private:
-    String work_number;
-    String private_number;
+    String number;
 public:
-    Phone(const String& work_number, const String& private_number)
-    {
-        this->work_number = work_number;
-        this->private_number = private_number;
+    Phone(const String& number) {
+        this->number = number;
     }
 
-    String getWorkNumber() const { return work_number; }
-    void setWorkNumber(const String &s) { this->work_number = s; }
-
-    String getPrivateNumber() const { return private_number; }
-    void setPrivateNumber(const String &s) { this->private_number = s; }
+    String getNumber() const { return number; }
+    void setNumber(const String &s) { this->number = s; }
 
     bool operator==(const Phone& p) const
     {
-        if (work_number != p.getWorkNumber()) return false;
-        if (private_number != p.getPrivateNumber()) return false;
+        if (number != p.getNumber()) return false;
         return true;
     }
 
