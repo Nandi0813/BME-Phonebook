@@ -36,6 +36,16 @@ String::String(const String &s)
     data[length] = '\0';
 }
 
+String::String(const std::string &s)
+{
+    data = new char[(length = s.length()) + 1];
+
+    for (size_t i = 0; i < length; i++)
+        data[i] = s[i];
+
+    data[length] = '\0';
+}
+
 String& String::operator=(const String &s)
 {
     if (this != &s)
@@ -134,7 +144,7 @@ String::~String()
 
 std::ostream& operator<<(std::ostream& os, String const& rhs)
 {
-    return os << rhs.getData();
+    return os << std::string(rhs.getData());
 }
 
 std::istream& operator>>(std::istream& is, String& s0)
@@ -145,8 +155,7 @@ std::istream& operator>>(std::istream& is, String& s0)
     is.setf(std::ios_base::skipws);
     while (is >> ch) {
         is.unsetf(std::ios_base::skipws);
-        if (isspace(ch)) {
-            is.putback(ch);
+        if (ch == '\n') {
             break;
         } else {
             s0 = s0 + ch;

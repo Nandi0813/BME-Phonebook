@@ -16,6 +16,7 @@ public:
     String(const char *s = "");
     String(char c);
     String(const String&);
+    String(const std::string&);
 
     size_t getLength() const { return length; }
 

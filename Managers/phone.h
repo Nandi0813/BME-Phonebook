@@ -19,12 +19,6 @@ public:
     String getNumber() const { return number; }
     void setNumber(const String &s) { this->number = s; }
 
-    bool operator==(const Phone& p) const
-    {
-        if (number != p.getNumber()) return false;
-        return true;
-    }
-
     ~Phone() = default;
 };
 

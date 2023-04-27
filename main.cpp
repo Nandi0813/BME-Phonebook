@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "Libs/gtest_lite.h"
 #include "Managers/directory.h"
 
 using std::cout;
@@ -14,10 +13,9 @@ int main()
     while (cycle)
     {
         char command;
-        std::cout << "\n"
+        std::cout << std::endl
                   << "e -> Kilépés" << std::endl
                   << "a -> Névjegy hozzáadása" << std::endl
-                  << "d -> Névjegy törlése" << std::endl
                   << "l -> Névjegyek listázása" << std::endl
                   << "s -> Keresés a névjegyek között" << std::endl
                   << "5 -> Névjegyek mentése" << std::endl
@@ -34,13 +32,16 @@ int main()
             case 'l':
                 directory.listContacts();
                 break;
+            case 's':
+                directory.searchContact();
+                break;
+            case '5':
+                directory.saveData("data.txt");
+                break;
             default:
                 break;
         }
     }
-    /*
-    Contact contact = Contact(Name("Dukát", "Nándor", "Nándi"), Address("2045", "Törökbálint", "Meggyes utca", "19.2"), Phone("+36309383747", "+36306106664"));
-    contact.print(std::cout);
-    directory.addContact(contact);
-     */
+
+    directory.saveData("data.txt");
 }

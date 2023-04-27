@@ -10,7 +10,14 @@
 #include "address.h"
 #include "phone.h"
 
-enum ContactType { null, company, person };
+using std::endl;
+
+enum ContactType
+{
+    null = 0,
+    company = 1,
+    person = 2
+};
 
 class Contact
 {
@@ -30,8 +37,11 @@ public:
 
     virtual void print(std::ostream& os) const = 0;
 
+    virtual void saveToFile(std::ostream& os) const = 0;
+
     bool operator==(const Contact& c) const {
-        return phone == c.getPhone();
+        if (phone.getNumber() == c.getPhone().getNumber()) return true;
+        return false;
     }
 
     virtual ~Contact() = default;
@@ -41,12 +51,27 @@ class Person : public Contact
 {
 public:
     Person(const Name &name, const Address &address, const Phone &phone)
-    : Contact(name, address, phone) {
+    : Contact(name, address, phone)
+    {
         this->contactType = person;
     }
 
     void print(std::ostream& os) const override {
-        os << "Személy Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << std::endl;
+        os << "Személy Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << endl;
+    }
+
+    void saveToFile(std::ostream& os) const override
+    {
+        os
+            << contactType << endl
+            << getName().getLastname() << endl
+            << getName().getFirstname() << endl
+            << getName().getNickname() << endl
+            << getAddress().getPostcode() << endl
+            << getAddress().getCity() << endl
+            << getAddress().getStreet() << endl
+            << getAddress().getNumber() << endl
+            << getPhone().getNumber() << endl;
     }
 };
 
@@ -54,11 +79,26 @@ class Company : public Contact
 {
 public:
     Company(const Name &name, const Address &address, const Phone &phone)
-            : Contact(name, address, phone) {
+    : Contact(name, address, phone)
+    {
         this->contactType = company;
     }
 
     void print(std::ostream& os) const override {
-        os << "Cég Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << std::endl;
+        os << "Cég Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << endl;
+    }
+
+    void saveToFile(std::ostream& os) const override
+    {
+        os
+                << contactType << endl
+                << getName().getLastname() << endl
+                << getName().getFirstname() << endl
+                << getName().getNickname() << endl
+                << getAddress().getPostcode() << endl
+                << getAddress().getCity() << endl
+                << getAddress().getStreet() << endl
+                << getAddress().getNumber() << endl
+                << getPhone().getNumber() << endl;
     }
 };
