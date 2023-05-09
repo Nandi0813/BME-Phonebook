@@ -3,6 +3,7 @@
 //
 
 #include "directory.h"
+#include "memtrace.h"
 
 using std::cout;
 using std::endl;

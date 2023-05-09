@@ -6,6 +6,7 @@
 #define PROJECT_NAME_H
 
 #include "String.h"
+#include "memtrace.h"
 
 class Name {
 private:
@@ -21,13 +22,13 @@ public:
     }
 
     String getLastname() const { return last_name; }
-    void setLastname(String& s) { this->last_name = s; }
+    void setLastname(const String& s) { this->last_name = s; }
 
     String getFirstname() const { return first_name; }
-    void setFirstname(String& s) { this->first_name = s; }
+    void setFirstname(const String& s) { this->first_name = s; }
 
     String getNickname() const { return nickname; }
-    void setNickname(String& s) { this->nickname = s; }
+    void setNickname(const String& s) { this->nickname = s; }
 
     String getFullname() const { return first_name + " " + last_name; }
 

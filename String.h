@@ -6,6 +6,7 @@
 #define STRING_H
 
 #include <iostream>
+#include "memtrace.h"
 
 class String
 {
@@ -16,15 +17,11 @@ public:
     String(const char *s = "");
     String(char c);
     String(const String&);
-    String(const std::string&);
-
-    size_t getLength() const { return length; }
 
     const char* getData() const { return data; }
     char* getData() { return data; };
 
     String& operator=(const String&);
-    String& operator=(String&);
     String& operator=(const char*);
 
     bool operator==(const String&) const;
@@ -35,8 +32,6 @@ public:
 
     char& operator[](size_t);
     const char& operator[](size_t) const;
-
-    bool contains(char&) const;
 
     ~String();
 };

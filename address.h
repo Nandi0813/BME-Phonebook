@@ -5,6 +5,7 @@
 #ifndef PROJECT_ADDRESS_H
 #define PROJECT_ADDRESS_H
 
+#include "memtrace.h"
 #include "String.h"
 
 class Address {
@@ -23,16 +24,16 @@ public:
     }
 
     String getPostcode() const { return postcode; }
-    void setPostcode(String& s) { this->postcode = s; }
+    void setPostcode(const String& s) { this->postcode = s; }
 
     String getCity() const { return city; }
-    void setCity(String& s) { this->city = s; }
+    void setCity(const String& s) { this->city = s; }
 
     String getStreet() const { return street; }
-    void setStreet(String& s) { this->street = s; }
+    void setStreet(const String& s) { this->street = s; }
 
     String getHouseNumber() const { return houseNumber; }
-    void setHouseNumber(String& s) { this->houseNumber = s; }
+    void setHouseNumber(const String& s) { this->houseNumber = s; }
 
     ~Address() = default;
 };

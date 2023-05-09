@@ -6,6 +6,7 @@
 #define PROJECT_PHONE_H
 
 #include "String.h"
+#include "memtrace.h"
 
 class Phone
 {
@@ -17,7 +18,7 @@ public:
     }
 
     String getNumber() const { return number; }
-    void setNumber(String& s) { this->number = s; }
+    void setNumber(const String& s) { this->number = s; }
 
     ~Phone() = default;
 };

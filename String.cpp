@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include "memtrace.h"
 
 #include "String.h"
 
@@ -36,33 +37,7 @@ String::String(const String &s)
     data[length] = '\0';
 }
 
-String::String(const std::string &s)
-{
-    data = new char[(length = s.length()) + 1];
-
-    for (size_t i = 0; i < length; i++)
-        data[i] = s[i];
-
-    data[length] = '\0';
-}
-
 String& String::operator=(const String &s)
-{
-    if (this != &s)
-    {
-        delete[] data;
-        data = new char[(length = s.length) + 1];
-
-        for (size_t i = 0; i < length; i++)
-            data[i] = s.data[i];
-
-        data[length] = '\0';
-    }
-
-    return *this;
-}
-
-String& String::operator=(String &s)
 {
     if (this != &s)
     {
@@ -144,13 +119,6 @@ const char& String::operator[](size_t idx) const
         throw "String: indexelesi hiba";
 
     return data[idx];
-}
-
-bool String::contains(char &c) const
-{
-    for (size_t i = 0; i < length; i++)
-        if (data[i] == c) return true;
-    return false;
 }
 
 String::~String()

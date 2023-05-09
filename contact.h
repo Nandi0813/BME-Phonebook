@@ -2,7 +2,11 @@
 // Created by Dukát Nándor on 2023. 04. 23..
 //
 
+#ifndef PROJECT_CONTACT_H
+#define PROJECT_CONTACT_H
+
 #include <iostream>
+#include "memtrace.h"
 
 #include "String.h"
 #include "name.h"
@@ -11,8 +15,7 @@
 
 using std::endl;
 
-enum ContactType
-{
+enum ContactType {
     person, company
 };
 
@@ -23,10 +26,10 @@ protected:
     Phone phone;
 public:
     Contact(const Address &address, const Phone &phone)
-    : address(address), phone(phone) {}
+            : address(address), phone(phone) {}
 
-    Address getAddress() const { return address; }
-    Phone getPhone() const { return phone; }
+    Address& getAddress() { return address; }
+    Phone& getPhone() { return phone; }
 
     virtual void print(std::ostream&) const = 0;
 
@@ -42,30 +45,30 @@ public:
 
 class Person : public Contact
 {
-protected:
+private:
     Name name;
 public:
     Person(const Name &n, const Address &address, const Phone &phone)
-    : name(n), Contact(address, phone) {}
+            : name(n), Contact(address, phone) {}
 
-    Name getName() const { return name; }
+    Name& getName() { return name; }
 
     void print(std::ostream& os) const override {
-        os << "Személy Adatok : " << name.getFullname() << " " << name.getNickname() << " " << getAddress() << " " << phone.getNumber() << endl;
+        os << "Személy Adatok : " << name.getFullname() << " " << name.getNickname() << " " << address << " " << phone.getNumber() << endl;
     }
 
     void saveToFile(std::ostream& os) const override
     {
         os
-            << person << endl
-            << name.getLastname() << endl
-            << name.getFirstname() << endl
-            << name.getNickname() << endl
-            << address.getPostcode() << endl
-            << address.getCity() << endl
-            << address.getStreet() << endl
-            << address.getHouseNumber() << endl
-            << phone.getNumber() << endl;
+                << person << endl
+                << name.getLastname() << endl
+                << name.getFirstname() << endl
+                << name.getNickname() << endl
+                << address.getPostcode() << endl
+                << address.getCity() << endl
+                << address.getStreet() << endl
+                << address.getHouseNumber() << endl
+                << phone.getNumber() << endl;
     }
 };
 
@@ -75,13 +78,15 @@ private:
     String name;
 public:
     Company(const String &name, const Address &address, const Phone &phone)
-    : Contact(address, phone)
-    {
+            : Contact(address, phone) {
         this->name = name;
     }
 
+    String& getName() { return name; }
+    void setName(const String& n) { name = n; }
+
     void print(std::ostream& os) const override {
-        os << "Cég Adatok : " << name << " " << getAddress() << " " << phone.getNumber() << endl;
+        os << "Cég Adatok : " << name << " " << address << " " << phone.getNumber() << endl;
     }
 
     void saveToFile(std::ostream& os) const override
@@ -96,3 +101,5 @@ public:
                 << phone.getNumber() << endl;
     }
 };
+
+#endif //PROJECT_CONTACT_H

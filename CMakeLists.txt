@@ -7,15 +7,15 @@ add_definitions(-DMEMTRACE)
 
 add_executable(Project
         main.cpp
-        Libs/memtrace.cpp
-        Libs/memtrace.h
-        Libs/gtest_lite.h
-        Managers/String.cpp
-        Managers/String.h
-        Managers/contact.h
-        Managers/directory.cpp
-        Managers/directory.h
-        Managers/name.h
-        Managers/address.h
-        Managers/phone.h
-        Managers/list.hpp)
+        memtrace.cpp
+        memtrace.h
+        gtest_lite.h
+        String.cpp
+        String.h
+        contact.h
+        directory.cpp
+        directory.h
+        name.h
+        address.h
+        phone.h
+        list.hpp)
