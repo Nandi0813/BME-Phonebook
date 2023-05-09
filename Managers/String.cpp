@@ -62,6 +62,22 @@ String& String::operator=(const String &s)
     return *this;
 }
 
+String& String::operator=(String &s)
+{
+    if (this != &s)
+    {
+        delete[] data;
+        data = new char[(length = s.length) + 1];
+
+        for (size_t i = 0; i < length; i++)
+            data[i] = s.data[i];
+
+        data[length] = '\0';
+    }
+
+    return *this;
+}
+
 String& String::operator=(const char* s)
 {
     return *this = String(s);

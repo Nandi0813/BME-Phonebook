@@ -21,13 +21,13 @@ public:
     }
 
     String getLastname() const { return last_name; }
-    void setLastname(const String &s) { this->last_name = s; }
+    void setLastname(String& s) { this->last_name = s; }
 
     String getFirstname() const { return first_name; }
-    void setFirstname(const String &s) { this->first_name = s; }
+    void setFirstname(String& s) { this->first_name = s; }
 
     String getNickname() const { return nickname; }
-    void setNickname(const String &s) { this->nickname = s; }
+    void setNickname(String& s) { this->nickname = s; }
 
     String getFullname() const { return first_name + " " + last_name; }
 

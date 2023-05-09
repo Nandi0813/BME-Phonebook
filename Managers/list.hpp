@@ -2,8 +2,8 @@
 // Created by Dukát Nándor on 2023. 05. 07..
 //
 
-#ifndef PROJECT_LIST_H
-#define PROJECT_LIST_H
+#ifndef PROJECT_LIST_HPP
+#define PROJECT_LIST_HPP
 
 #include <iostream>
 
@@ -38,7 +38,7 @@ public:
             delete[] data;
             data = temp;
 
-            data[size++] = static_cast<Contact *>(t);
+            data[size++] = t;
 
             return true;
         }
@@ -95,4 +95,4 @@ public:
 };
 
 
-#endif //PROJECT_LIST_H
+#endif //PROJECT_LIST_HPP

@@ -12,33 +12,33 @@ private:
     String postcode;
     String city;
     String street;
-    String number;
+    String houseNumber;
 public:
     Address(const String& postcode, const String& city, const String& street, const String& number)
     {
         this->postcode = postcode;
         this->city = city;
         this->street = street;
-        this->number = number;
+        this->houseNumber = number;
     }
 
     String getPostcode() const { return postcode; }
-    void setPostcode(const String &s) { this->postcode = s; }
+    void setPostcode(String& s) { this->postcode = s; }
 
     String getCity() const { return city; }
-    void setCity(const String &s) { this->city = s; }
+    void setCity(String& s) { this->city = s; }
 
     String getStreet() const { return street; }
-    void setStreet(const String &s) { this->street = s; }
+    void setStreet(String& s) { this->street = s; }
 
-    String getNumber() const { return number; }
-    void setNumber(const String &s) { this->number = s; }
+    String getHouseNumber() const { return houseNumber; }
+    void setHouseNumber(String& s) { this->houseNumber = s; }
 
     ~Address() = default;
 };
 
-inline std::ostream& operator<<(std::ostream& os, Address const& address) {
-    return os << address.getPostcode() << " " << address.getCity() << " " << address.getStreet() << " " << address.getNumber();
+inline std::ostream& operator<<(std::ostream& os, const Address& address) {
+    return os << address.getPostcode() << " " << address.getCity() << " " << address.getStreet() << " " << address.getHouseNumber();
 }
 
 #endif //PROJECT_ADDRESS_H

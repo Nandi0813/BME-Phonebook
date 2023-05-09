@@ -24,6 +24,7 @@ public:
     char* getData() { return data; };
 
     String& operator=(const String&);
+    String& operator=(String&);
     String& operator=(const char*);
 
     bool operator==(const String&) const;
@@ -40,7 +41,7 @@ public:
     ~String();
 };
 
-std::ostream& operator<<(std::ostream& os, String const& rhs);
+std::ostream& operator<<(std::ostream& os, String const&);
 std::istream& operator>>(std::istream& is, String& s0);
 
 #endif

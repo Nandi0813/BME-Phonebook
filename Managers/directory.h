@@ -5,7 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include "contact.h"
-#include "list.h"
+#include "list.hpp"
 
 class Directory
 {
@@ -14,20 +14,12 @@ private:
 public:
     Directory();
 
-    List<Contact*> getContacts();
-
-    void addContact();
-
     void importData(const char *);
     void saveData(const char *) const;
 
-    void searchContact();
-    bool modifyContact(Contact *contact);
     void listContacts();
 
     Contact* searchByNumber(const String&) const;
-
-    static String readInString();
 
     ~Directory() = default;
 };
