@@ -18,4 +18,4 @@ add_executable(Project
         Managers/name.h
         Managers/address.h
         Managers/phone.h
-        )
+        Managers/list.h)

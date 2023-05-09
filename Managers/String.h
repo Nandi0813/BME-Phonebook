@@ -29,13 +29,13 @@ public:
     bool operator==(const String&) const;
     bool operator!=(const String&) const;
 
-    String operator+(String const &s) const;
-    String operator+(char c) const;
+    String operator+(const String&) const;
+    String operator+(char) const;
 
-    char& operator[](size_t idx);
-    const char& operator[](size_t idx) const;
+    char& operator[](size_t);
+    const char& operator[](size_t) const;
 
-    bool contains(char &c) const;
+    bool contains(char&) const;
 
     ~String();
 };

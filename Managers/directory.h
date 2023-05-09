@@ -5,29 +5,22 @@
 #include <iostream>
 #include <fstream>
 #include "contact.h"
+#include "list.h"
 
 class Directory
 {
 private:
-    int size;
-    Contact **contacts;
+    List<Contact*> contacts;
 public:
-    Directory() : size(0), contacts(nullptr)
-    {
-        this->importData("data.txt");
-    };
+    Directory();
 
-    int getSize() const { return size; }
+    List<Contact*> getContacts();
 
     void addContact();
-    bool addContact(ContactType contactType, const Name&, const Address&, const Phone&);
-    bool addContact(Contact *contact);
-    bool deleteContact(Contact *contact);
 
     void importData(const char *);
     void saveData(const char *) const;
 
-    bool contains(const Contact *contact) const;
     void searchContact();
     bool modifyContact(Contact *contact);
     void listContacts();
@@ -36,5 +29,5 @@ public:
 
     static String readInString();
 
-    ~Directory();
+    ~Directory() = default;
 };

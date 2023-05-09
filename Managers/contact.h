@@ -14,7 +14,6 @@ using std::endl;
 
 enum ContactType
 {
-    null = 0,
     company = 1,
     person = 2
 };
@@ -25,19 +24,17 @@ private:
     Name name;
     Address address;
     Phone phone;
-protected:
-    ContactType contactType;
 public:
     Contact(const Name &name, const Address &address, const Phone &phone)
-    : name(name), address(address), phone(phone), contactType() {}
+    : name(name), address(address), phone(phone) {}
 
     Name getName() const { return name; }
     Address getAddress() const { return address; }
     Phone getPhone() const { return phone; }
 
-    virtual void print(std::ostream& os) const = 0;
+    virtual void print(std::ostream&) const = 0;
 
-    virtual void saveToFile(std::ostream& os) const = 0;
+    virtual void saveToFile(std::ostream&) const = 0;
 
     bool operator==(const Contact& c) const {
         if (phone.getNumber() == c.getPhone().getNumber()) return true;
@@ -51,10 +48,7 @@ class Person : public Contact
 {
 public:
     Person(const Name &name, const Address &address, const Phone &phone)
-    : Contact(name, address, phone)
-    {
-        this->contactType = person;
-    }
+    : Contact(name, address, phone) {}
 
     void print(std::ostream& os) const override {
         os << "Személy Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << endl;
@@ -63,7 +57,7 @@ public:
     void saveToFile(std::ostream& os) const override
     {
         os
-            << contactType << endl
+            << "person" << endl
             << getName().getLastname() << endl
             << getName().getFirstname() << endl
             << getName().getNickname() << endl
@@ -79,10 +73,7 @@ class Company : public Contact
 {
 public:
     Company(const Name &name, const Address &address, const Phone &phone)
-    : Contact(name, address, phone)
-    {
-        this->contactType = company;
-    }
+    : Contact(name, address, phone) {}
 
     void print(std::ostream& os) const override {
         os << "Cég Adatok : " << getName().getFullname() << " " << getName().getNickname() << " " << getAddress() << " " << getPhone().getNumber() << endl;
@@ -91,7 +82,7 @@ public:
     void saveToFile(std::ostream& os) const override
     {
         os
-                << contactType << endl
+                << "company" << endl
                 << getName().getLastname() << endl
                 << getName().getFirstname() << endl
                 << getName().getNickname() << endl

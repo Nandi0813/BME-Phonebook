@@ -149,7 +149,7 @@ END_NAMESPACE
 	#include <fstream>  // VS 2013 headerjében van deleted definició
 	#include <sstream>
 	#include <vector>
-	#include <list>
+	#include <List>
 	#include <map>
 	#include <algorithm>
 	#include <functional>

@@ -11,8 +11,10 @@ using std::endl;
 void Directory::addContact()
 {
     std::cin.ignore();
-    ContactType contactType = null;
-    while (contactType == 0)
+    ContactType contactType;
+    bool contact = false;
+
+    while (!contact)
     {
         cout << endl << "Add meg, hogy milyen típusú kontaktot szeretnél felvinni a rendszerbe." << endl << "Személy : sz - Cég: c ";
         String s = readInString();
@@ -25,6 +27,8 @@ void Directory::addContact()
                 contactType = person;
             else
                 contactType = company;
+
+            contact = true;
         }
     }
 
@@ -125,41 +129,17 @@ void Directory::addContact()
             phonenumber = s;
     }
 
-    addContact(contactType, Name(last_name, first_name, nickname), Address(postcode, city, street, housenumber), Phone(phonenumber));
+    if (contactType == person)
+        contacts.add(new Person(Name(last_name, first_name, nickname), Address(postcode, city, street, housenumber), Phone(phonenumber)));
+    else if (contactType == company)
+        contacts.add(new Company(Name(last_name, first_name, nickname), Address(postcode, city, street, housenumber), Phone(phonenumber)));
+    else
+    {
+        cout << endl << "Hiba történt!";
+        return;
+    }
+
     cout << endl << "Sikeresen hozzáadtál egy új névjegyet!";
-}
-
-bool Directory::addContact(ContactType contactType, const Name& name, const Address& address, const Phone& phone)
-{
-    switch (contactType)
-    {
-        case company:
-            return addContact(new Company(name, address, phone));
-        case person:
-            return addContact(new Person(name, address, phone));
-        default:
-            return false;
-    }
-}
-
-bool Directory::addContact(Contact *contact)
-{
-    try
-    {
-        auto **tempDirectory = new Contact*[size + 1];
-        for (int i = 0; i < size; i++)
-            tempDirectory[i] = contacts[i];
-
-        delete[] contacts;
-        contacts = tempDirectory;
-
-        contacts[size++] = contact;
-
-        return true;
-    }
-    catch(std::bad_alloc&) {
-        return false;
-    }
 }
 
 void Directory::searchContact()
@@ -216,7 +196,7 @@ bool Directory::modifyContact(Contact *contact)
             case 'b':
                 return false;
             case 'd':
-                deleteContact(contact);
+                contacts.remove(contact);
                 return true;
             case '1':
                 do {
@@ -239,62 +219,19 @@ bool Directory::modifyContact(Contact *contact)
 
 void Directory::listContacts()
 {
-    if (size == 0)
+    if (contacts.getSize() == 0)
     {
         cout << endl << "A telefönkönyv üres." << endl;
         return;
     }
 
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < contacts.getSize(); i++)
         contacts[i]->print(cout);
-}
-
-bool Directory::deleteContact(Contact *contact)
-{
-    for (int i = 0; i < size; i++)
-    {
-        if (contacts[i] == contact)
-        {
-            auto **tempDirectory = new Contact*[size - 1];
-
-            int count = 0;
-            for (int j = 0; j < size; j++)
-            {
-                if (j == i) continue;
-                tempDirectory[count++] = contacts[j];
-            }
-
-            delete[] contacts;
-            delete contact;
-
-            contacts = tempDirectory;
-            size--;
-
-            return true;
-        }
-    }
-
-    return false;
-}
-
-Directory::~Directory()
-{
-    for (int i = 0; i < size; i++)
-        delete contacts[i];
-    delete[] contacts;
-}
-
-bool Directory::contains(const Contact *contact) const
-{
-    for (int i = 0; i < size; i++)
-        if (contacts[i] == contact)
-            return true;
-    return false;
 }
 
 Contact *Directory::searchByNumber(const String &s) const
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < contacts.getSize(); i++)
         if (contacts[i]->getPhone().getNumber() == s)
             return contacts[i];
     return nullptr;
@@ -313,8 +250,9 @@ void Directory::importData(const char* fileName)
     {
         for (int i = 0; i < size; i++)
         {
-            int contactType;
-            file >> contactType;
+            int cT;
+            file >> cT;
+            auto contactType = ContactType(cT);
 
             String lastName;
             file >> lastName;
@@ -340,8 +278,13 @@ void Directory::importData(const char* fileName)
             String phoneNum;
             file >> phoneNum;
 
-            if (!addContact(ContactType(contactType), Name(lastName, firstName, nickname), Address(postcode, city, street, houseNumber), Phone(phoneNum)))
-                throw "Adatok fileból való beolvasása közben hiba történt!";
+            switch (contactType)
+            {
+                case person:
+                    contacts.add(new Person(Name(lastName, firstName, nickname), Address(postcode, city, street, houseNumber), Phone(phoneNum)));
+                case company:
+                    contacts.add(new Company(Name(lastName, firstName, nickname), Address(postcode, city, street, houseNumber), Phone(phoneNum)));
+            }
         }
     }
 
@@ -356,12 +299,12 @@ void Directory::saveData(const char* fileName) const
         throw "Nem sikerült beolvasni a telefonkönyv fájlt.";
 
     // Névjegyek méretének beírása a file-ba.
-    file << size << std::endl;
+    file << contacts.getSize() << std::endl;
 
-    if (size > 0)
+    if (contacts.getSize() > 0)
     {
         // Névjegyek adatainak beírása.
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < contacts.getSize(); i++)
             contacts[i]->saveToFile(file);
     }
 
@@ -374,4 +317,12 @@ String Directory::readInString()
     getline(std::cin, readIn);
     String s = readIn;
     return s;
+}
+
+Directory::Directory() {
+    this->importData("data.txt");
+}
+
+List<Contact*> Directory::getContacts() {
+    return contacts;
 }
