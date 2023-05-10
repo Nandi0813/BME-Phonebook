@@ -12,23 +12,32 @@ template<class T>
 class List
 {
 private:
-    int size;
-    T* data;
+    int size; // A lista mérete
+    T* data; // T osztályok pointerei
 public:
-    List() : size(0)
-    {
+    /*
+     * Default konstruktor
+     * size: alapértelmezett 0 érték
+     * lefoglalja a tömbböt
+     */
+    List() : size(0) {
         data = new T[size];
     }
 
-    int getSize() const
-    {
+    /*
+     * @return tömbnek a mérete
+     */
+    int getSize() const {
         return this->size;
     }
 
-    bool add(T t)
+    /*
+     * Függvény hozzáad egy objektumot a tömb végéhez.
+     * @param t - T objektum pointere
+     */
+    void add(T t)
     {
-        try
-        {
+        try {
             T *temp = new T[size + 1];
             for (int i = 0; i < size; i++)
                 temp[i] = data[i];
@@ -37,25 +46,25 @@ public:
             data = temp;
 
             data[size++] = t;
-
-            return true;
         }
         catch(std::bad_alloc&) {
-            return false;
+            throw "Nem sikerült a memória foglalás.";
         }
     }
 
-    bool remove(T t)
+    /*
+     * Függvény töröl egy megadott objektumot a tömbből.
+     * @param t - T objektum pointere
+     */
+    void remove(T t)
     {
-        if (t == nullptr)
-            return false;
+        if (t == nullptr) return;
 
         for (int i = 0; i < size; i++)
         {
             if (data[i] == t)
             {
-                try
-                {
+                try {
                     T *temp = new T[size - 1];
 
                     int count = 0;
@@ -70,27 +79,44 @@ public:
 
                     data = temp;
                     size--;
-
-                    return true;
                 }
                 catch(std::bad_alloc&) {
-                    return false;
+                    throw "Nem sikerült a memória foglalás.";
                 }
             }
         }
-
-        return false;
     }
 
+    /*
+     * Indexelő operátor
+     * @param i - Tömb indexe
+     * @return T& - Tömb i-edik eleme.
+     */
     T& operator[](int i)
     {
-        return data[i];
-    }
-    T& operator[](int i) const
-    {
+        if (i < 0 || i >= size)
+            throw "Indexelési hiba!";
+
         return data[i];
     }
 
+    /*
+     * Indexelő operátor
+     * @param i - Tömb indexe
+     * @return T& - Tömb i-edik eleme.
+     */
+    T& operator[](int i) const
+    {
+        if (i < 0 || i >= size)
+            throw "Indexelési hiba!";
+
+        return data[i];
+    }
+
+    /*
+     * Destruktor
+     * Törli a lista minden objektumát és a pointer tömböt.
+     */
     virtual ~List()
     {
         for (int i = 0; i < size; i++)
@@ -98,6 +124,5 @@ public:
         delete[] data;
     }
 };
-
 
 #endif //PROJECT_LIST_HPP

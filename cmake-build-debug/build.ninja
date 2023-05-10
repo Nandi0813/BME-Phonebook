@@ -60,9 +60,9 @@ build CMakeFiles/Project.dir/memtrace.cpp.o: CXX_COMPILER__Project_Debug /Users/
   OBJECT_DIR = CMakeFiles/Project.dir
   OBJECT_FILE_DIR = CMakeFiles/Project.dir
 
-build CMakeFiles/Project.dir/String.cpp.o: CXX_COMPILER__Project_Debug /Users/dukatnandor/Library/Mobile$ Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2.$ félév/Programozás$ 2./Nagy$ Házi/Project/String.cpp || cmake_object_order_depends_target_Project
+build CMakeFiles/Project.dir/string.cpp.o: CXX_COMPILER__Project_Debug /Users/dukatnandor/Library/Mobile$ Documents/com~apple~CloudDocs/Documents/Egyetem/Tárgyak/2.$ félév/Programozás$ 2./Nagy$ Házi/Project/string.cpp || cmake_object_order_depends_target_Project
   DEFINES = -DMEMTRACE
-  DEP_FILE = CMakeFiles/Project.dir/String.cpp.o.d
+  DEP_FILE = CMakeFiles/Project.dir/string.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++11
   OBJECT_DIR = CMakeFiles/Project.dir
   OBJECT_FILE_DIR = CMakeFiles/Project.dir
@@ -82,7 +82,7 @@ build CMakeFiles/Project.dir/directory.cpp.o: CXX_COMPILER__Project_Debug /Users
 #############################################
 # Link the executable Project
 
-build Project: CXX_EXECUTABLE_LINKER__Project_Debug CMakeFiles/Project.dir/main.cpp.o CMakeFiles/Project.dir/memtrace.cpp.o CMakeFiles/Project.dir/String.cpp.o CMakeFiles/Project.dir/directory.cpp.o
+build Project: CXX_EXECUTABLE_LINKER__Project_Debug CMakeFiles/Project.dir/main.cpp.o CMakeFiles/Project.dir/memtrace.cpp.o CMakeFiles/Project.dir/string.cpp.o CMakeFiles/Project.dir/directory.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk
   OBJECT_DIR = CMakeFiles/Project.dir
   POST_BUILD = :

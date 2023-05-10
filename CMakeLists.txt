@@ -10,8 +10,8 @@ add_executable(Project
         memtrace.cpp
         memtrace.h
         gtest_lite.h
-        String.cpp
-        String.h
+        string.cpp
+        string.h
         contact.h
         directory.cpp
         directory.h

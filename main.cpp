@@ -84,16 +84,22 @@ int main()
 
     TEST(adat torles, sikertelen)
     {
-        EXPECT_FALSE(directory.getContacts().remove(directory.searchByNumber("0620111111"))) << "Névjegy törlés sikeres";
+        directory.getContacts().remove(directory.searchByNumber("0620111111"));
+        EXPECT_TRUE(directory.searchByNumber("0620111111") == nullptr) << "Névjegy törlés sikeres";
         END
     }
 
     TEST(adat torles, sikeres)
     {
-        EXPECT_TRUE(directory.getContacts().remove(directory.searchByNumber("06301234567"))) << "Névjegy törlése sikertelen";
-        EXPECT_TRUE(directory.getContacts().remove(directory.searchByNumber("06303211234"))) << "Névjegy törlése sikertelen";
-        EXPECT_TRUE(directory.getContacts().remove(directory.searchByNumber("06301002020"))) << "Névjegy törlése sikertelen";
-        EXPECT_TRUE(directory.getContacts().remove(directory.searchByNumber("06302509982"))) << "Névjegy törlése sikertelen";
+        directory.getContacts().remove(directory.searchByNumber("06301234567"));
+        directory.getContacts().remove(directory.searchByNumber("06303211234"));
+        directory.getContacts().remove(directory.searchByNumber("06301002020"));
+        directory.getContacts().remove(directory.searchByNumber("06302509982"));
+
+        EXPECT_TRUE(directory.searchByNumber("06301234567") == nullptr) << "Névjegy törlése sikertelen";
+        EXPECT_TRUE(directory.searchByNumber("06303211234") == nullptr) << "Névjegy törlése sikertelen";
+        EXPECT_TRUE(directory.searchByNumber("06303211234") == nullptr) << "Névjegy törlése sikertelen";
+        EXPECT_TRUE(directory.searchByNumber("06302509982") == nullptr) << "Névjegy törlése sikertelen";
         END
     }
 

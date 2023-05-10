@@ -5,7 +5,7 @@
 #include <iostream>
 #include "memtrace.h"
 
-#include "String.h"
+#include "string.h"
 
 String::String(const char *s)
 {
@@ -103,22 +103,6 @@ String String::operator+(const String &s) const
     string.data[count] = '\0';
 
     return string;
-}
-
-char& String::operator[](size_t idx)
-{
-    if (idx >= length)
-        throw "String: indexelesi hiba";
-
-    return data[idx];
-}
-
-const char& String::operator[](size_t idx) const
-{
-    if (idx >= length)
-        throw "String: indexelesi hiba";
-
-    return data[idx];
 }
 
 String::~String()
