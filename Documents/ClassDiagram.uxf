@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <help_text>Space for diagram notes</help_text>
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>128</y>
+      <w>168</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>List
+--
+T: class
+--
+- size: int
+- data: T*
+--
++ List()
++ getSize(): int
++ contains(T&amp;): bool
++ add(T&amp;): void
++ remove(T*): void
++ operator[](int): T&amp;
++ ~List(): virtual</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>0</y>
+      <w>192</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Directory
+--
+- contacts: List&lt;Contact*&gt;
+--
++ getContacts(): List&lt;Contact*&gt;
++ addContact(): void
++ importData(char*): void
++ saveData(char*): void
++ searchContact(): void
++ modifyContact(Contact *contact): bool
++ listContacts(): void
++ searchByNumber(String&amp;): Contact*
++ readInString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>328</x>
+      <y>224</y>
+      <w>184</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>Contact
+--
+- name: Name
+- address: Address
+- phone: Phone
+--
++ Contact(Name&amp;, Address&amp;, Phone&amp;)
++ getName(): Name
++ getAddress(): Address
++ getPhone(): Phone
++ print(ostream&amp;): void virtual
++ saveToFile(ostream&amp;): void virtual
++ operator==(Contact&amp;): bool
++ ~Contact(): virtual</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>152</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>536</y>
+      <w>168</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>Name
+--
+- lastName: String
+- firstName: String
+- nickName: String
+--
++ Name(String&amp;, String&amp;, String&amp;)
++ getLastname(): String
++ setLastname(String&amp;): void
++ getFirstname(): String
++ setFirstname(String&amp;): void
++ getNickname(): String
++ setNickname(String&amp;): void
++ getFullname(): String
++ ~Name()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>344</y>
+      <w>176</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Person
+--
++ Person(Name&amp;, Address&amp;, Phone&amp;)
++ print(ostream&amp;): void
++ saveToFile(ostream&amp;): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>48</x>
+      <y>464</y>
+      <w>176</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Company
+--
++ Company(Name&amp;, Address&amp;, Phone&amp;)
++ print(ostream&amp;): void
++ saveToFile(ostream&amp;): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>488</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Phone
+--
+- number: String
+--
++ Phone(String&amp;)
++ getNumber(): String
++ setNumber(String&amp;): void
++ ~Phone()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>384</y>
+      <w>152</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>384</y>
+      <w>112</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>216</y>
+      <w>256</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>Address
+--
++ postcode: String
++ city: String
++ street: String
++ houseNumber: String
+--
++ Address(String&amp;, String&amp;, String&amp;, String&amp;)
++ getPostcode(): String
++ setPostcode(String&amp;): void
++ getCity(): String
++ setCity(String&amp;): void
++ getStreet(): String
++ setStreet(String&amp;): void
++ getHouseNumber(): String
++ setHouseNumber(String&amp;): void
++ ~Address()
+
++ operator&lt;&lt;(ostream&amp;, Address&amp;)
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>296</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>592</x>
+      <y>664</y>
+      <w>200</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>String
+--
+- data: char*
+- length: size_t
+--
++ String(char*)
++ String(char)
++ String(String&amp;)
++ getLength(): size_t
++ getData(): char*
++ operator=(String&amp;): String&amp;
++ operator=(char*): String&amp;
++ operator==(String&amp;): bool
++ operator!=(String&amp;): bool
++ operator+(String&amp;): String
++ operator+(char): String
++ operator[](size_t i): char&amp;
++ ~String()
+
++ operator&lt;&lt;(ostream&amp;, String&amp;): ostream&amp;
++ operator&gt;&gt;(ostream&amp;, String&amp;): ostream&amp;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>656</y>
+      <w>208</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>10.0;10.0;240.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>576</y>
+      <w>120</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>440</y>
+      <w>72</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>344</y>
+      <w>176</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>96</y>
+      <w>152</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=BLACK</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>136</x>
+      <y>248</y>
+      <w>208</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+</diagram>
