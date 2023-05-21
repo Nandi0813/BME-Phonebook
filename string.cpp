@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include "memtrace.h"
 
 #include "string.h"
 

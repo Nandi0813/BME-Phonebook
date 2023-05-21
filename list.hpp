@@ -8,13 +8,25 @@
 #include <iostream>
 #include "memtrace.h"
 
-template<class T>
+template<class T, typename E = std::out_of_range>
 class List
 {
 private:
     int size; // A lista mérete
     T* data; // T osztályok pointerei
 public:
+    // Iterátor típusdefiníció
+    using iterator = T*;
+
+    // Kezdő iterátor
+    iterator begin() const {
+        return data;
+    }
+
+    // Végző iterátor
+    iterator end() const {
+        return data + size;
+    }
     /*
      * Default konstruktor
      * size: alapértelmezett 0 érték
@@ -95,7 +107,7 @@ public:
     T& operator[](int i)
     {
         if (i < 0 || i >= size)
-            throw "Indexelési hiba!";
+            throw E("Indexelési hiba!");
 
         return data[i];
     }
@@ -108,7 +120,7 @@ public:
     T& operator[](int i) const
     {
         if (i < 0 || i >= size)
-            throw "Indexelési hiba!";
+            throw E("Indexelési hiba!");
 
         return data[i];
     }

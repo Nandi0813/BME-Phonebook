@@ -12,7 +12,7 @@ add_executable(Project
         gtest_lite.h
         string.cpp
         string.h
-        contact.h
+        contact.hpp
         directory.cpp
         directory.h
         name.h

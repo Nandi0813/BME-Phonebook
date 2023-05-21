@@ -9,7 +9,7 @@
 #include <fstream>
 #include "memtrace.h"
 
-#include "contact.h"
+#include "contact.hpp"
 #include "list.hpp"
 
 class Directory
@@ -36,11 +36,6 @@ public:
      * @param char - fájl neve
      */
     void saveData(const char *) const;
-
-    /*
-     * Kilistázza a kontaktokat.
-     */
-    void listContacts();
 
     /*
      * Telefonszám alapján keres a kontaktok listában

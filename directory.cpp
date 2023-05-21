@@ -3,7 +3,6 @@
 //
 
 #include "directory.h"
-#include "memtrace.h"
 
 using std::cout;
 using std::endl;
@@ -13,23 +12,11 @@ Directory::Directory()
     this->importData("data.txt");
 }
 
-void Directory::listContacts()
-{
-    if (contacts.getSize() == 0)
-    {
-        cout << endl << "A telefönkönyv üres." << endl;
-        return;
-    }
-
-    for (int i = 0; i < contacts.getSize(); i++)
-        contacts[i]->print(cout);
-}
-
 Contact *Directory::searchByNumber(const String &s) const
 {
-    for (int i = 0; i < contacts.getSize(); i++)
-        if (contacts[i]->getPhone().getNumber() == s)
-            return contacts[i];
+    for (auto contact : contacts)
+        if (contact->getPhone().getNumber() == s)
+            return contact;
     return nullptr;
 }
 
@@ -63,7 +50,8 @@ void Directory::importData(const char* fileName)
                     file >> street;
                     file >> houseNumber;
                     file >> phoneNum;
-                    contacts.add(new Person(Name(lastName, firstName, nickname), Address(postcode, city, street, houseNumber), Phone(phoneNum)));
+                    contacts.add(new Person(Name(lastName, firstName, nickname),
+                                            Address(postcode, city, street, houseNumber), Phone(phoneNum)));
                     break;
                 case company:
                     file >> companyName;
@@ -91,12 +79,9 @@ void Directory::saveData(const char* fileName) const
     // Névjegyek méretének beírása a file-ba.
     file << contacts.getSize() << std::endl;
 
-    if (contacts.getSize() > 0)
-    {
-        // Névjegyek adatainak beírása.
-        for (int i = 0; i < contacts.getSize(); i++)
-            contacts[i]->saveToFile(file);
-    }
+    // Névjegyek adatainak beírása.
+    for (auto contact : contacts)
+        contact->saveToFile(file);
 
     file.close();
 }

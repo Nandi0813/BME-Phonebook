@@ -2,8 +2,8 @@
 // Created by Dukát Nándor on 2023. 04. 23..
 //
 
-#ifndef PROJECT_CONTACT_H
-#define PROJECT_CONTACT_H
+#ifndef PROJECT_CONTACT_HPP
+#define PROJECT_CONTACT_HPP
 
 #include <iostream>
 #include "memtrace.h"
@@ -55,7 +55,7 @@ public:
      * Teljesen virtuális print függvény.
      * @param ostream& - ostream objektum
      */
-    virtual void print(std::ostream&) const = 0;
+    virtual std::ostream& print(std::ostream&) const = 0;
 
     /*
      * Fájlba ment
@@ -94,8 +94,10 @@ public:
      * @param address - Cím
      * @param phone - Telefonszám
      */
-    Person(const Name &n, const Address &address, const Phone &phone)
-            : name(n), Contact(address, phone) {}
+    Person(const Name &n, const Address &address, const Phone &phone) : Contact(address, phone)
+    {
+        this->name = n;
+    }
 
     /*
      * Név getter
@@ -106,8 +108,8 @@ public:
      * Kíírja a személy adatait a paraméterként kapott ostream objektumra.
      * @param os - ostream objektum
      */
-    void print(std::ostream& os) const override {
-        os << "Személy Adatok : " << name.getFullname() << " " << name.getNickname() << " " << address << " " << phone.getNumber() << endl;
+    std::ostream& print(std::ostream& os) const override {
+        return os << "Személy Adatok : " << name.getFullname() << " " << name.getNickname() << " " << address << " " << phone.getNumber() << endl;
     }
 
     /*
@@ -164,8 +166,8 @@ public:
      * Kíírja a cég adatait a paraméterként kapott ostream objektumra.
      * @param os - ostream objektum
      */
-    void print(std::ostream& os) const override {
-        os << "Cég Adatok : " << name << " " << address << " " << phone.getNumber() << endl;
+    std::ostream& print(std::ostream& os) const override {
+        return os << "Cég Adatok : " << name << " " << address << " " << phone.getNumber() << endl;
     }
 
     /*
@@ -185,4 +187,4 @@ public:
     }
 };
 
-#endif //PROJECT_CONTACT_H
+#endif //PROJECT_CONTACT_HPP

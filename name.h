@@ -23,6 +23,8 @@ public:
      * @param first_name - keresztnév
      * @param nickname - becenév
      */
+    Name() = default;
+
     Name(const String& last_name, const String& first_name, const String& nickname)
     {
         this->last_name = last_name;
