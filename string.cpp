@@ -52,11 +52,6 @@ String& String::operator=(const String &s)
     return *this;
 }
 
-String& String::operator=(const char* s)
-{
-    return *this = String(s);
-}
-
 bool String::operator==(const String &s) const
 {
     if (length != s.length) return false;
@@ -66,17 +61,6 @@ bool String::operator==(const String &s) const
             return false;
 
     return true;
-}
-
-bool String::operator!=(const String &s) const
-{
-    if (length != s.length) return true;
-
-    for (size_t i = 0; i < length; i++)
-        if (data[i] != s.data[i])
-            return true;
-
-    return false;
 }
 
 String String::operator+(char c) const

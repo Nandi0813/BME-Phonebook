@@ -42,7 +42,6 @@ public:
      * @param s - String
      */
     String& operator=(const String&);
-    String& operator=(const char*);
 
     /*
      * Egyenlőség operátor - Összehasonlít két stringet
@@ -50,13 +49,6 @@ public:
      * @return - Hasonlít-e a két string egymásra
      */
     bool operator==(const String&) const;
-
-    /*
-     * Egyenlőtlenség operátor - Összehasonlít két stringet
-     * @param s - String
-     * @return - Hasonlít-e a két string egymásra
-     */
-    bool operator!=(const String&) const;
 
     /*
      * Összeadó operátor - Összefűz két stringet
