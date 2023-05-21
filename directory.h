@@ -38,6 +38,11 @@ public:
     void saveData(const char *) const;
 
     /*
+     * Kilistázza a kontaktokat.
+     */
+    void listContacts(std::ostream& os);
+
+    /*
      * Telefonszám alapján keres a kontaktok listában
      * @param string - telefonszám
      * @return - A talált kontakt

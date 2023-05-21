@@ -20,6 +20,18 @@ Contact *Directory::searchByNumber(const String &s) const
     return nullptr;
 }
 
+void Directory::listContacts(std::ostream& os)
+{
+    if (contacts.getSize() == 0)
+    {
+        cout << endl << "A telefönkönyv üres." << endl;
+        return;
+    }
+
+    for (int i = 0; i < contacts.getSize(); i++)
+        contacts[i]->print(os);
+}
+
 void Directory::importData(const char* fileName)
 {
     std::ifstream file(fileName);
